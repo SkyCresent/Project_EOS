@@ -80,6 +80,8 @@ Source/ProjectEOS/
 
 ## System Design
 
+### Ability Initialization
+
 초기 Ability / Effect 등록은 StartUpData DataAsset 구조로 분리했습니다.
 
 공통 등록 로직은 BaseStartUpData에서 관리하고, PlayerStartUpData에서 플레이어 전용 Ability 구성을 처리합니다.
