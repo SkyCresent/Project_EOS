@@ -1,0 +1,34 @@
+# Ignore everything
+*
+
+# Allow folder traversal
+!*/
+
+# Allow selected source folders only
+!Source/**/AbilitySystem/**
+!Source/**/AnimInstances/**
+!Source/**/Character/**
+!Source/**/Components/**
+!Source/**/DataAssets/**
+!Source/**/Items/**
+!Source/**/PlayerController/**
+
+# Allow core Unreal files
+!*.uproject
+!*.Build.cs
+!*.Target.cs
+
+# Allow git files
+!.gitignore
+
+# Optional config
+!Config/**
+
+# Explicitly ignore unwanted folders
+Restapi/
+Source/**/Widget/
+Source/**/HUD/
+Source/**/Managers/
+Source/**/AI/
+Source/**/Interfaces/
+Source/**/Struct/
