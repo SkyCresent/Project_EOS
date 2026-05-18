@@ -165,13 +165,20 @@ Weapon Hit
 
 ## Overall Combat Flow
 ```plaintext
-Input → EosEnhancedInputComponent → InputTag
-└─ EosAbilitySystemComponent → EosPlayerGameplayAbility
-└─ CommitAbility → Montage Play
-└─ Weapon Collision (EosPlayerCombatComponent)
-└─ GameplayEvent (Common_Event_MeleeHit)
-└─ GameplayEffect → GeExecCalc_DamageTaken
-└─ EosAttributeSet → Health 반영 → Dead State
+Input
+└─ EosEnhancedInputComponent
+   └─ InputTag
+      └─ EosAbilitySystemComponent
+         └─ EosPlayerGameplayAbility
+            └─ CommitAbility
+               └─ Montage Play
+                  └─ Weapon Collision
+                     └─ GameplayEvent (Common_Event_MeleeHit)
+                        └─ GameplayEffect
+                           └─ GeExecCalc_DamageTaken
+                              └─ EosAttributeSet
+                                 └─ Health 반영
+                                    └─ Dead State
 ```
 ---
 
