@@ -1,177 +1,143 @@
-# 🗡️ Project EOS
+# Project EOS
 
-> **Unreal Engine 5.4 | C++ | Gameplay Ability System**  
-> GAS 기반 ARPG 전투 시스템 — 확장 가능한 Gameplay Framework 구조 설계 프로젝트
+Unreal Engine 5.4 / C++ / GAS 기반 ARPG 전투 시스템 프로젝트입니다.
 
-![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.4-black?style=flat-square&logo=unrealengine)
-![C++](https://img.shields.io/badge/C%2B%2B-17-blue?style=flat-square&logo=cplusplus)
-![GAS](https://img.shields.io/badge/GAS-Gameplay%20Ability%20System-orange?style=flat-square)
-![Team Project](https://img.shields.io/badge/Project-Team-lightgrey?style=flat-square)
+본 저장소는 팀 프로젝트에서 제가 직접 작성한 C++ 소스코드만 정리한 저장소입니다.
+전체 프로젝트는 SVN으로 관리했으며, 여기에는 제 담당 코드만 포함되어 있습니다.
 
----
-
-## 📌 Overview
-
-본 저장소는 팀 프로젝트 **Project EOS**에서 **제가 직접 작성한 C++ 소스코드**만을 추려 업로드한 저장소입니다.
-
-Blueprint 의존도를 최소화하고, **C++ 기반의 확장 가능한 전투 Gameplay Framework** 구조를 설계하는 것을 목표로 제작된 프로젝트입니다.
-
-| 설계 목표 | 구현 방식 |
-|---|---|
-| 상태 관리 하드코딩 제거 | GameplayTag 기반 상태 / 이벤트 관리 |
-| Input과 Ability 결합도 감소 | Enhanced Input + GAS 입력 구조 분리 |
-| 전투 로직 통합 및 확장성 | GAS 중심 Ability / Component 구조 |
-| 무기별 독립 전투 구조 | Equip 상태 기반 Ability / AnimLayer 전환 |
+전투 로직은 최대한 C++에서 처리하고,
+Blueprint는 Animation 및 데이터 연결 용도로 사용했습니다.
+GAS의 Ability / Component 단위 구조를 활용해 입력, 상태, 전투 흐름의
+책임을 분리하는 방향으로 작업했습니다.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **Engine** : Unreal Engine 5.4
-- **Language** : C++
-- **Core System** : Gameplay Ability System (GAS)
-- **Input** : Enhanced Input
-- **State Management** : GameplayTag
-- **Animation** : Animation Montage, Linked Anim Layer
-- **Damage** : GameplayEffect + ExecutionCalculation (ExecCalc)
+- Unreal Engine 5.4
+- C++
+- Gameplay Ability System (GAS)
+- Enhanced Input
+- GameplayTag
+- Animation Montage / Linked Anim Layer
+- GameplayEffect + ExecCalc
+- SVN (형상관리)
 
 ---
 
-## 📁 담당 소스코드 목록
-
-본 저장소에 포함된 파일은 모두 제가 직접 작성한 코드입니다.
+## 담당 소스코드
 
 ```plaintext
 Source/ProjectEOS/
 
 ├── AbilitySystem/
-│   ├── EosAbilitySystemComponent.h / .cpp     # InputTag 기반 Ability 입력 처리
-│   ├── EosGameplayAbility.h / .cpp            # GA 공통 기반 클래스
-│   ├── EosPlayerGameplayAbility.h / .cpp      # 플레이어 전용 GA 기반 클래스
-│   ├── EosAttributeSet.h / .cpp               # Health / Damage Attribute 관리
-│   └── GeExecCalc_DamageTaken.h / .cpp        # ExecCalc 기반 데미지 계산
+│   ├── EosAbilitySystemComponent.h / .cpp         # InputTag 기반 Ability 입력 처리
+│   ├── EosGameplayAbility.h / .cpp                # GA 공통 기반 클래스
+│   ├── EosPlayerGameplayAbility.h / .cpp          # 플레이어 전용 GA 기반 클래스
+│   ├── EosAttributeSet.h / .cpp                   # Health / Damage Attribute 관리
+│   └── GeExecCalc_DamageTaken.h / .cpp            # ExecCalc 기반 데미지 계산
 │
 ├── Components/
-│   ├── EosBaseCombatComponent.h / .cpp        # 전투 컴포넌트 기반 클래스
-│   └── EosPlayerCombatComponent.h / .cpp      # 무기 장착 / Collision 처리
+│   ├── Combat/ 
+│   │   ├── EosBaseCombatComponent.h / .cpp        # 전투 컴포넌트 기반 클래스
+│   │   ├── EosPlayerCombatComponent.h / .cpp      # 무기 장착 / Collision 처리
+│   └── Input/
+│       ├── EosEnhancedInputComponent.h            # InputTag 기반 Input 바인딩
+│       └── EosDataAsset_InputConfig.h / .cpp      # InputAction-InputTag 매핑 DataAsset
 │
 ├── Character/
-│   └── EosBasePlayerCharacter.h / .cpp        # 플레이어 캐릭터 기반 클래스
+│   └── EosBasePlayerCharacter.h / .cpp            # 플레이어 캐릭터 기반 클래스
 │
-├── Controller/
-│   └── EosBasePlayerController.h / .cpp       # Input 처리 진입점
+├── PlayerController/
+│   └── EosBasePlayerController.h / .cpp           # Input 처리 진입점
 │
 ├── Input/
-│   ├── EosEnhancedInputComponent.h            # InputTag 기반 Input 바인딩
-│   └── EosDataAsset_InputConfig.h / .cpp      # InputAction-InputTag 매핑 DataAsset
+│   ├── EosEnhancedInputComponent.h                # InputTag 기반 Input 바인딩
+│   └── EosDataAsset_InputConfig.h / .cpp          # InputAction-InputTag 매핑 DataAsset
 │
 ├── Items/
-│   ├── EosBaseWeapon.h / .cpp                 # 무기 Actor 기반 클래스
-│   └── EosBasePlayerWeapon.h / .cpp           # 플레이어 무기 기반 클래스
+│   ├── EosBaseWeapon.h / .cpp                     # 무기 Actor 기반 클래스
+│   └── EosBasePlayerWeapon.h / .cpp               # 플레이어 무기 기반 클래스
 │
 ├── AnimInstances/
-│   ├── EosCharacterAnimInstance.h / .cpp      # 캐릭터 AnimInstance
-│   └── EosPlayerLinkedAnimLayer.h / .cpp      # Linked Anim Layer 구조
+│   ├── EosCharacterAnimInstance.h / .cpp          # 캐릭터 AnimInstance
+│   └── EosPlayerLinkedAnimLayer.h / .cpp          # Linked Anim Layer 구조
 │
 └── Utilities/
-    ├── EosDataAsset_PlayerStartUpData.h / .cpp # 초기 Ability / Effect 등록 DataAsset
-    ├── EosGameplayTags.h / .cpp               # 프로젝트 전역 GameplayTag 선언
-    ├── EosStructTypes.h                        # 공용 Struct 정의
-    └── EosFunctionLibrary.h / .cpp            # 전역 유틸 함수 라이브러리
+    ├── EosDataAsset_PlayerStartUpData.h / .cpp    # 초기 Ability / Effect 등록 DataAsset
+    ├── EosGameplayTags.h / .cpp                   # 프로젝트 전역 GameplayTag 선언
+    ├── EosStructTypes.h                           # 공용 Struct 정의
+    └── EosFunctionLibrary.h / .cpp                # 전역 유틸 함수 라이브러리
 ```
 
----
+## System Design
 
-## ⚙️ System Design
+### GameplayTag 기반 상태 관리
 
-### 1. GameplayTag 기반 상태 관리
-
-GameplayTag를 단순 분류 목적이 아닌, **상태 관리 / 입력 식별 / Ability 실행 / 전투 이벤트 전달**의 핵심 수단으로 활용했습니다.  
-전역 Tag는 `EosGameplayTags.h / .cpp`에서 일괄 선언하여 하드코딩을 방지했습니다.
+GameplayTag를 단순 분류 용도가 아니라
+상태 관리 / 입력 식별 / Ability 실행 / 전투 이벤트 전달까지 일관되게 사용했습니다.
+전역 Tag는 `EosGameplayTags`에서 한곳에 선언해 문자열 하드코딩 없이 참조할 수 있도록 했습니다.
 
 Input
 └─ InputTag (InputTag_Attack, InputTag_Guard)
-└─ ASC에서 Ability 검색
-└─ 상태 Tag 기반 실행 여부 판단 (Player_Status_Guarding 등)
+└─ ASC Ability 검색
+└─ 상태 Tag 실행 여부 판단 (Player_Status_Guarding 등)
 └─ GameplayEvent 전달 (Common_Event_MeleeHit)
 
-**주요 Tag 예시**
+### Enhanced Input + GAS 입력 구조
 
-| Tag | 용도 |
-|---|---|
-| `InputTag_Attack` | 공격 입력 식별 |
-| `InputTag_Guard` | 가드 입력 식별 |
-| `Player_Status_Weapon_Equip` | 무기 장착 상태 |
-| `Player_Status_Guarding` | 가드 중 상태 |
-| `Common_Event_MeleeHit` | 근접 타격 이벤트 전달 |
-
----
-
-### 2. Enhanced Input + GAS 입력 구조
-
-`EosEnhancedInputComponent`와 `EosDataAsset_InputConfig`를 통해 InputAction-InputTag 매핑을 DataAsset으로 관리하고,  
-`EosAbilitySystemComponent`에서 InputTag 기반으로 Ability를 검색하여 **Controller가 개별 Ability를 직접 참조하지 않는 구조**로 설계했습니다.
+`EosEnhancedInputComponent`에서 InputAction을 InputTag로 바인딩하고,
+`EosAbilitySystemComponent`에서 해당 Tag로 Ability를 검색해 활성화합니다.
+Controller가 개별 Ability를 직접 참조하지 않아 무기 교체 시 InputMappingContext만
+교체하면 입력 구조 전체가 전환됩니다.
 
 InputAction
-└─ EosEnhancedInputComponent (InputTag 바인딩)
+└─ EosEnhancedInputComponent
 └─ EosAbilitySystemComponent (InputTag → Ability 검색)
-└─ Ability Activate
+└─ Ability 실행
 
-- `EosDataAsset_InputConfig` : InputAction ↔ InputTag 매핑 관리
-- 무기 장착 상태에 따른 `InputMappingContext` 런타임 전환 지원
+InputAction ↔ InputTag 매핑은 `EosDataAsset_InputConfig`로 관리합니다.
 
----
+### Combo Flow
 
-### 3. Combo Flow
-
-Combo는 **GameplayTag + Timer + Montage Notify** 기반으로 설계했습니다.
+GameplayTag + Timer + Montage Notify 조합으로 설계했습니다.
+실제 입력 허용 타이밍은 Montage Notify가 열어주고, 그 안에서 입력이 들어오면
+ComboCount를 올려 다음 Ability로 이어집니다.
 
 Attack Ability 실행
 └─ Combo Timer 시작 (ComboContinueTime)
 └─ Montage Notify → 입력 허용 구간 개방
-└─ InputTag_Continue 감지 시 ComboCount 증가
+└─ InputTag_Continue 감지 → ComboCount 증가
 └─ 다음 Attack Ability 실행
 
-| 구현 요소 | 역할 |
-|---|---|
-| `CurrentComboCount` | 현재 콤보 단계 추적 |
-| `ComboContinueTime` | 콤보 입력 허용 시간 |
-| `FTimerHandle` | 콤보 초기화 타이머 관리 |
-| Montage Notify | 타격 판정 및 입력 허용 타이밍 제어 |
+### Equip 상태 기반 Ability 전환
 
----
+무기를 장착하면 `EosPlayerCombatComponent`가 WeaponTag를 갱신하면서
+Ability 부여 / InputMappingContext 전환 / Linked Anim Layer 기반 애니메이션 구조 연동이 함께 처리됩니다.
+무기별로 Ability와 입력 구조를 독립적으로 구성할 수 있습니다.
 
-### 4. Equip 상태 기반 Ability 전환
-
-무기 장착 시 `EosPlayerCombatComponent`가 WeaponTag를 갱신하고,  
-**Ability 부여 / InputMappingContext 전환 / Linked Anim Layer 전환**이 연동됩니다.
-
-Weapon Equip (EosPlayerCombatComponent)
+Weapon Equip
 └─ CurrentEquippedWeaponTag 변경
 ├─ Weapon Ability 부여 (GAS Grant)
 ├─ InputMappingContext 전환
 └─ EosPlayerLinkedAnimLayer 전환
 
----
+### Damage Calculation
 
-### 5. Damage Calculation (ExecCalc)
-
-`GeExecCalc_DamageTaken`에서 데미지 계산 로직을 분리하여,  
-`EosAttributeSet`의 Health에 최종 반영하는 구조입니다.
+데미지 계산은 `GeExecCalc_DamageTaken`에 분리했습니다.
+Ability에서 EffectSpec을 생성하고 SetByCaller로 수치를 넘기면,
+ExecCalc에서 AttackPower / DefensePower / ComboCount / AttackType을 종합해
+`EosAttributeSet`의 Health에 반영합니다.
 
 Weapon Hit
 └─ GameplayEffectSpec 생성 (EosGameplayAbility)
-└─ SetByCaller로 데이터 전달
-└─ GeExecCalc_DamageTaken 실행
+└─ SetByCaller 데이터 전달
+└─ GeExecCalc_DamageTaken
 └─ EosAttributeSet Health 반영
-
-**계산 반영 요소**
-
-`Base Damage` / `Attack Power` / `Defense Power` / `Combo Count` / `Attack Type Tag`
 
 ---
 
-## 🔄 Overall Combat Flow
+## Overall Combat Flow
 
 Input → EosEnhancedInputComponent → InputTag
 └─ EosAbilitySystemComponent → EosPlayerGameplayAbility
@@ -183,30 +149,19 @@ Input → EosEnhancedInputComponent → InputTag
 
 ---
 
-## 🧩 Core Classes
+## Core Classes
 
 | Class | 역할 |
 |---|---|
-| `EosGameplayAbility` | GA 공통 기반 — EffectSpec 생성, GameplayEvent 처리 |
-| `EosPlayerGameplayAbility` | 플레이어 전용 GA — PlayerCharacter / Controller 참조 제공 |
-| `EosAbilitySystemComponent` | InputTag 기반 Ability 검색 및 활성화 처리 |
+| `EosGameplayAbility` | GA 공통 기반. EffectSpec 생성, GameplayEvent 처리 |
+| `EosPlayerGameplayAbility` | 플레이어 전용 GA. PlayerCharacter / Controller 참조 제공 |
+| `EosAbilitySystemComponent` | InputTag 기반 Ability 검색 및 활성화 |
 | `EosAttributeSet` | Health / Damage Attribute 정의 및 변경 처리 |
-| `GeExecCalc_DamageTaken` | ExecCalc 기반 데미지 계산 로직 분리 |
+| `GeExecCalc_DamageTaken` | ExecCalc 데미지 계산 로직 |
 | `EosPlayerCombatComponent` | 무기 장착 상태 관리, Weapon Collision 처리 |
-| `EosEnhancedInputComponent` | InputTag 기반 Input 바인딩 확장 |
-| `EosDataAsset_InputConfig` | InputAction ↔ InputTag 매핑 DataAsset |
-| `EosDataAsset_PlayerStartUpData` | 초기 Ability / Effect 등록 DataAsset |
-| `EosGameplayTags` | 프로젝트 전역 GameplayTag 선언부 |
+| `EosEnhancedInputComponent` | InputTag 기반 Input 바인딩 |
+| `EosDataAsset_InputConfig` | InputAction ↔ InputTag 매핑 |
+| `EosDataAsset_PlayerStartUpData` | 초기 Ability / Effect 등록 |
+| `EosGameplayTags` | 프로젝트 전역 GameplayTag 선언 |
 | `EosFunctionLibrary` | GAS 관련 전역 유틸 함수 |
-| `EosStructTypes` | 공용 Struct 정의 (무기 데이터, 입력 설정 등) |
-
----
-
-## 🗂️ Version Control
-
-SVN 기반 형상관리를 사용했습니다.
-
-- `Source` / `Config` 중심 관리 (Intermediate / Binaries 제외)
-- 기능 단위 Commit
-- DataAsset 기반 설정 분리로 협업 시 충돌 최소화
-- Ability / Component 단위 책임 분리로 병렬 작업 가능한 구조 설계
+| `EosStructTypes` | 공용 Struct 정의 |
