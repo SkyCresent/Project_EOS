@@ -67,6 +67,7 @@ Source/ProjectEOS/
 │   └── EosPlayerLinkedAnimLayer.h / .cpp          # Linked Anim Layer 구조
 │
 └── DataAssets/
+│   ├── EosDataAsset_BaseStartUpData.h / .cpp      # StartUpData 공통 기반 클래스
 │   └── EosDataAsset_PlayerStartUpData.h / .cpp    # 초기 Ability / Effect 등록 DataAsset
 │
 └── Struct/
@@ -78,6 +79,10 @@ Source/ProjectEOS/
 ```
 
 ## System Design
+
+초기 Ability / Effect 등록은 StartUpData DataAsset 구조로 분리했습니다.
+
+공통 등록 로직은 BaseStartUpData에서 관리하고, PlayerStartUpData에서 플레이어 전용 Ability 구성을 처리합니다.
 
 ### GameplayTag 기반 상태 관리
 
@@ -180,7 +185,8 @@ Input → EosEnhancedInputComponent → InputTag
 | `EosPlayerCombatComponent` | 무기 장착 상태 관리, Weapon Collision 처리 |
 | `EosEnhancedInputComponent` | InputTag 기반 Input 바인딩 |
 | `EosDataAsset_InputConfig` | InputAction ↔ InputTag 매핑 |
-| `EosDataAsset_PlayerStartUpData` | 초기 Ability / Effect 등록 |
+| `EosDataAsset_BaseStartUpData | StartUpData 공통 기반 클래스 |
+| `EosDataAsset_PlayerStartUpData | Player 초기 Ability / Effect 등록 |
 | `EosGameplayTags` | 프로젝트 전역 GameplayTag 선언 |
 | `EosFunctionLibrary` | GAS 관련 전역 유틸 함수 |
 | `EosStructTypes` | 공용 Struct 정의 |
