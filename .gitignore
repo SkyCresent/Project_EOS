@@ -4,31 +4,70 @@
 # Allow folder traversal
 !*/
 
-# Allow selected source folders only
-!Source/**/AbilitySystem/**
-!Source/**/AnimInstances/**
-!Source/**/Character/**
-!Source/**/Components/**
-!Source/**/DataAssets/**
-!Source/**/Items/**
-!Source/**/PlayerController/**
-
-# Allow core Unreal files
+# Allow Unreal project core files if needed
 !*.uproject
-!*.Build.cs
-!*.Target.cs
+!Source/**/*.Build.cs
+!Source/**/*.Target.cs
 
-# Allow git files
+# Allow selected source files only
+
+!Source/**/EosAbilitySystemComponent.h
+!Source/**/EosAbilitySystemComponent.cpp
+
+!Source/**/EosGameplayAbility.h
+!Source/**/EosGameplayAbility.cpp
+
+!Source/**/EosPlayerGameplayAbility.h
+!Source/**/EosPlayerGameplayAbility.cpp
+
+!Source/**/EosAttributeSet.h
+!Source/**/EosAttributeSet.cpp
+
+!Source/**/GeExecCalc_DamageTaken.h
+!Source/**/GeExecCalc_DamageTaken.cpp
+
+!Source/**/EosEnhancedInputComponent.h
+
+!Source/**/EosDataAsset_InputConfig.h
+!Source/**/EosDataAsset_InputConfig.cpp
+
+!Source/**/EosBasePlayerController.h
+!Source/**/EosBasePlayerController.cpp
+
+!Source/**/EosBasePlayerCharacter.h
+!Source/**/EosBasePlayerCharacter.cpp
+
+!Source/**/EosBaseCombatComponent.h
+!Source/**/EosBaseCombatComponent.cpp
+
+!Source/**/EosPlayerCombatComponent.h
+!Source/**/EosPlayerCombatComponent.cpp
+
+!Source/**/EosBaseWeapon.h
+!Source/**/EosBaseWeapon.cpp
+
+!Source/**/EosBasePlayerWeapon.h
+!Source/**/EosBasePlayerWeapon.cpp
+
+!Source/**/EosCharacterAnimInstance.h
+!Source/**/EosCharacterAnimInstance.cpp
+
+!Source/**/EosPlayerLinkedAnimLayer.h
+!Source/**/EosPlayerLinkedAnimLayer.cpp
+
+!Source/**/EosDataAsset_PlayerStartUpData.h
+!Source/**/EosDataAsset_PlayerStartUpData.cpp
+
+!Source/**/EosGameplayTags.h
+!Source/**/EosGameplayTags.cpp
+
+!Source/**/EosStructTypes.h
+
+!Source/**/EosFunctionLibrary.h
+!Source/**/EosFunctionLibrary.cpp
+
+# Allow gitignore itself
 !.gitignore
 
-# Optional config
-!Config/**
-
-# Explicitly ignore unwanted folders
+# Exclude Rest API folder
 Restapi/
-Source/**/Widget/
-Source/**/HUD/
-Source/**/Managers/
-Source/**/AI/
-Source/**/Interfaces/
-Source/**/Struct/
