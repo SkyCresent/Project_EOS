@@ -51,10 +51,6 @@ Source/ProjectEOS/
 ├── PlayerController/
 │   └── EosBasePlayerController.h / .cpp           # Input 처리 진입점
 │
-├── Input/
-│   ├── EosEnhancedInputComponent.h                # InputTag 기반 Input 바인딩
-│   └── EosDataAsset_InputConfig.h / .cpp          # InputAction-InputTag 매핑 DataAsset
-│
 ├── Items/
 │   ├── EosBaseWeapon.h / .cpp                     # 무기 Actor 기반 클래스
 │   └── EosBasePlayerWeapon.h / .cpp               # 플레이어 무기 기반 클래스
@@ -78,11 +74,13 @@ GameplayTag를 단순 분류 용도가 아니라
 상태 관리 / 입력 식별 / Ability 실행 / 전투 이벤트 전달까지 일관되게 사용했습니다.
 전역 Tag는 `EosGameplayTags`에서 한곳에 선언해 문자열 하드코딩 없이 참조할 수 있도록 했습니다.
 
+```
 Input
-└─ InputTag (InputTag_Attack, InputTag_Guard)
-└─ ASC Ability 검색
-└─ 상태 Tag 실행 여부 판단 (Player_Status_Guarding 등)
-└─ GameplayEvent 전달 (Common_Event_MeleeHit)
+ └─ InputTag (InputTag_Attack, InputTag_Guard)
+     └─ ASC Ability 검색
+         └─ 상태 Tag 실행 여부 판단 (Player_Status_Guarding 등)
+             └─ GameplayEvent 전달 (Common_Event_MeleeHit)
+```
 
 ### Enhanced Input + GAS 입력 구조
 
