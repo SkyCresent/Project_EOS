@@ -55,6 +55,12 @@
 !Source/**/EosPlayerLinkedAnimLayer.h
 !Source/**/EosPlayerLinkedAnimLayer.cpp
 
+!Source/**/EosDataAsset_BaseStartUpData.h
+!Source/**/EosDataAsset_BaseStartUpData.cpp
+
+!Source/**/EosDataAsset_PlayerStartUpData.h
+!Source/**/EosDataAsset_PlayerStartUpData.cpp
+
 !Source/**/EosDataAsset_PlayerStartUpData.h
 !Source/**/EosDataAsset_PlayerStartUpData.cpp
 
