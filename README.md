@@ -2,8 +2,6 @@
 
 **Unreal Engine 5.4 | C++ | Gameplay Ability System**
 
-GAS 기반 ARPG 전투 시스템 — 확장 가능한 Gameplay Framework 구조 설계 프로젝트
-
 ![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.4-black?style=flat-square&logo=unrealengine)
 ![C++](https://img.shields.io/badge/C%2B%2B-17-blue?style=flat-square&logo=cplusplus)
 ![GAS](https://img.shields.io/badge/GAS-Gameplay%20Ability%20System-orange?style=flat-square)
@@ -34,7 +32,7 @@ GAS의 Ability / Component 단위 구조를 활용해 입력, 상태, 전투 흐
 
 ---
 
-## 담당 소스코드
+## 담당 코드
 
 ```plaintext
 Source/ProjectEOS/
@@ -68,10 +66,14 @@ Source/ProjectEOS/
 │   ├── EosCharacterAnimInstance.h / .cpp          # 캐릭터 AnimInstance
 │   └── EosPlayerLinkedAnimLayer.h / .cpp          # Linked Anim Layer 구조
 │
+└── DataAssets/
+│   └── EosDataAsset_PlayerStartUpData.h / .cpp    # 초기 Ability / Effect 등록 DataAsset
+│
+└── Struct/
+│   └── EosStructTypes.h                           # 공용 Struct 정의
+│
 └── Utilities/
-    ├── EosDataAsset_PlayerStartUpData.h / .cpp    # 초기 Ability / Effect 등록 DataAsset
     ├── EosGameplayTags.h / .cpp                   # 프로젝트 전역 GameplayTag 선언
-    ├── EosStructTypes.h                           # 공용 Struct 정의
     └── EosFunctionLibrary.h / .cpp                # 전역 유틸 함수 라이브러리
 ```
 
