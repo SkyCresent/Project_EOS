@@ -1,6 +1,15 @@
 # Project EOS
 
-Unreal Engine 5.4 / C++ / GAS 기반 ARPG 전투 시스템 프로젝트입니다.
+**Unreal Engine 5.4 | C++ | Gameplay Ability System**
+
+GAS 기반 ARPG 전투 시스템 — 확장 가능한 Gameplay Framework 구조 설계 프로젝트
+
+![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.4-black?style=flat-square&logo=unrealengine)
+![C++](https://img.shields.io/badge/C%2B%2B-17-blue?style=flat-square&logo=cplusplus)
+![GAS](https://img.shields.io/badge/GAS-Gameplay%20Ability%20System-orange?style=flat-square)
+![Team Project](https://img.shields.io/badge/Project-Team-lightgrey?style=flat-square)
+
+---
 
 본 저장소는 팀 프로젝트에서 제가 직접 작성한 C++ 소스코드만 정리한 저장소입니다.
 
