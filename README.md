@@ -133,7 +133,9 @@ Weapon Equip
 
 Ability에서 EffectSpec을 생성하고 SetByCaller로 수치를 넘기면,
 
-ExecCalc에서 AttackPower / DefensePower / ComboCount / AttackType을 종합해 `EosAttributeSet`의 Health에 반영합니다.
+ExecCalc에서 AttackPower / DefensePower / ComboCount / AttackType을 종합해
+
+`EosAttributeSet`의 Health에 반영합니다.
 ```plaintext
 Weapon Hit
 └─ GameplayEffectSpec 생성 (EosGameplayAbility)
