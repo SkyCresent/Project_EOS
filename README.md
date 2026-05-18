@@ -6,13 +6,9 @@ Unreal Engine 5.4 / C++ / GAS 기반 ARPG 전투 시스템 프로젝트입니다
 
 전체 프로젝트는 SVN으로 관리했으며, 여기에는 제 담당 코드만 포함되어 있습니다.
 
-전투 로직은 최대한 C++에서 처리하고,
+전투 로직은 최대한 C++에서 처리하고, Blueprint는 Animation 및 데이터 연결 용도로 사용했습니다.
 
-Blueprint는 Animation 및 데이터 연결 용도로 사용했습니다.
-
-GAS의 Ability / Component 단위 구조를 활용해 입력, 상태, 전투 흐름의
-
-책임을 분리하는 방향으로 작업했습니다.
+GAS의 Ability / Component 단위 구조를 활용해 입력, 상태, 전투 흐름의 책임을 분리하는 방향으로 작업했습니다.
 
 ---
 
@@ -94,9 +90,7 @@ Input
 
 `EosAbilitySystemComponent`에서 해당 Tag로 Ability를 검색해 활성화합니다.
 
-Controller가 개별 Ability를 직접 참조하지 않아 무기 교체 시 InputMappingContext만
-
-교체하면 입력 구조 전체가 전환됩니다.
+Controller가 개별 Ability를 직접 참조하지 않아 무기 교체 시 InputMappingContext만 교체하면 입력 구조 전체가 전환됩니다.
 ```plaintext
 InputAction
 └─ EosEnhancedInputComponent
@@ -139,9 +133,7 @@ Weapon Equip
 
 Ability에서 EffectSpec을 생성하고 SetByCaller로 수치를 넘기면,
 
-ExecCalc에서 AttackPower / DefensePower / ComboCount / AttackType을 종합해
-
-`EosAttributeSet`의 Health에 반영합니다.
+ExecCalc에서 AttackPower / DefensePower / ComboCount / AttackType을 종합해 `EosAttributeSet`의 Health에 반영합니다.
 ```plaintext
 Weapon Hit
 └─ GameplayEffectSpec 생성 (EosGameplayAbility)
