@@ -88,12 +88,12 @@ Input
 `EosAbilitySystemComponent`에서 해당 Tag로 Ability를 검색해 활성화합니다.
 Controller가 개별 Ability를 직접 참조하지 않아 무기 교체 시 InputMappingContext만
 교체하면 입력 구조 전체가 전환됩니다.
-
+```plaintext
 InputAction
 └─ EosEnhancedInputComponent
 └─ EosAbilitySystemComponent (InputTag → Ability 검색)
 └─ Ability 실행
-
+```
 InputAction ↔ InputTag 매핑은 `EosDataAsset_InputConfig`로 관리합니다.
 
 ### Combo Flow
@@ -101,42 +101,42 @@ InputAction ↔ InputTag 매핑은 `EosDataAsset_InputConfig`로 관리합니다
 GameplayTag + Timer + Montage Notify 조합으로 설계했습니다.
 실제 입력 허용 타이밍은 Montage Notify가 열어주고, 그 안에서 입력이 들어오면
 ComboCount를 올려 다음 Ability로 이어집니다.
-
+```plaintext
 Attack Ability 실행
 └─ Combo Timer 시작 (ComboContinueTime)
 └─ Montage Notify → 입력 허용 구간 개방
 └─ InputTag_Continue 감지 → ComboCount 증가
 └─ 다음 Attack Ability 실행
-
+```
 ### Equip 상태 기반 Ability 전환
 
 무기를 장착하면 `EosPlayerCombatComponent`가 WeaponTag를 갱신하면서
 Ability 부여 / InputMappingContext 전환 / Linked Anim Layer 기반 애니메이션 구조 연동이 함께 처리됩니다.
 무기별로 Ability와 입력 구조를 독립적으로 구성할 수 있습니다.
-
+```plaintext
 Weapon Equip
 └─ CurrentEquippedWeaponTag 변경
 ├─ Weapon Ability 부여 (GAS Grant)
 ├─ InputMappingContext 전환
 └─ EosPlayerLinkedAnimLayer 전환
-
+```
 ### Damage Calculation
 
 데미지 계산은 `GeExecCalc_DamageTaken`에 분리했습니다.
 Ability에서 EffectSpec을 생성하고 SetByCaller로 수치를 넘기면,
 ExecCalc에서 AttackPower / DefensePower / ComboCount / AttackType을 종합해
 `EosAttributeSet`의 Health에 반영합니다.
-
+```plaintext
 Weapon Hit
 └─ GameplayEffectSpec 생성 (EosGameplayAbility)
 └─ SetByCaller 데이터 전달
 └─ GeExecCalc_DamageTaken
 └─ EosAttributeSet Health 반영
-
+```
 ---
 
 ## Overall Combat Flow
-
+```plaintext
 Input → EosEnhancedInputComponent → InputTag
 └─ EosAbilitySystemComponent → EosPlayerGameplayAbility
 └─ CommitAbility → Montage Play
@@ -144,7 +144,7 @@ Input → EosEnhancedInputComponent → InputTag
 └─ GameplayEvent (Common_Event_MeleeHit)
 └─ GameplayEffect → GeExecCalc_DamageTaken
 └─ EosAttributeSet → Health 반영 → Dead State
-
+```
 ---
 
 ## Core Classes
