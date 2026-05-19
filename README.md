@@ -156,6 +156,12 @@ Weapon Equip
 ├─ InputMappingContext 전환
 └─ EosPlayerLinkedAnimLayer 전환
 ```
+## Preview
+
+### Equip
+
+![Equip](Images/equip.gif)
+
 ### Damage Calculation
 
 데미지 계산은 `GeExecCalc_DamageTaken`에 분리했습니다.
