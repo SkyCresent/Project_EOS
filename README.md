@@ -19,6 +19,16 @@ GAS의 Ability / Component 단위 구조를 활용해 입력, 상태, 전투 흐
 
 ---
 
+## Preview
+
+### Combo Attack
+
+![Combo](Images/combo.gif)
+
+### Equip
+
+![Equip](Images/equip.gif)
+
 ## Tech Stack
 
 - Unreal Engine 5.4
@@ -136,11 +146,6 @@ Attack Ability 실행
 └─ InputTag_Continue 감지 → ComboCount 증가
 └─ 다음 Attack Ability 실행
 ```
-## Preview
-
-### Combo Attack
-
-![Combo](Images/combo.gif)
 
 ### Equip 상태 기반 Ability 전환
 
@@ -156,11 +161,6 @@ Weapon Equip
 ├─ InputMappingContext 전환
 └─ EosPlayerLinkedAnimLayer 전환
 ```
-## Preview
-
-### Equip
-
-![Equip](Images/equip.gif)
 
 ### Damage Calculation
 
