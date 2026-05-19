@@ -140,7 +140,7 @@ Attack Ability 실행
 
 ### Combo Attack
 
-
+![Combo](Images/combo.gif)
 
 ### Equip 상태 기반 Ability 전환
 
