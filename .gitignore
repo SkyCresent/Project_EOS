@@ -34,6 +34,9 @@
 !Source/**/EosBasePlayerController.h
 !Source/**/EosBasePlayerController.cpp
 
+!Source/**/EosBaseCharacter.h
+!Source/**/EosBaseCharacter.cpp
+
 !Source/**/EosBasePlayerCharacter.h
 !Source/**/EosBasePlayerCharacter.cpp
 
