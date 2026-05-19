@@ -53,6 +53,7 @@ Source/ProjectEOS/
 │       └── EosDataAsset_InputConfig.h / .cpp      # InputAction-InputTag 매핑 DataAsset
 │
 ├── Character/
+│   ├── EosBaseCharacter.h / .cpp                  # 캐릭터 공 기반 클래스
 │   └── EosBasePlayerCharacter.h / .cpp            # 플레이어 캐릭터 기반 클래스
 │
 ├── PlayerController/
@@ -80,11 +81,15 @@ Source/ProjectEOS/
 
 ## System Design
 
+공통 Character 로직은 `EosBaseCharacter`에서 관리하고,
+
+`EosBasePlayerCharacter`에서는 입력 및 플레이어 전용 기능을 처리하도록 분리했습니다.
+
 ### Ability Initialization
 
-초기 Ability / Effect 등록은 StartUpData DataAsset 구조로 분리했습니다.
+공통 등록 로직은 `EosDataAsset_BaseStartUpData`에서 관리하고,
 
-공통 등록 로직은 BaseStartUpData에서 관리하고, PlayerStartUpData에서 플레이어 전용 Ability 구성을 처리합니다.
+플레이어 전용 Ability 구성은 `EosDataAsset_PlayerStartUpData`에서 처리합니다.
 
 ### GameplayTag 기반 상태 관리
 
@@ -187,6 +192,7 @@ Input
 | Class | 역할 |
 |---|---|
 | `EosGameplayAbility` | GA 공통 기반. EffectSpec 생성, GameplayEvent 처리 |
+| `EosBaseCharacter` | EosBaseCharacter | Character 공통 기능 및 ASC 연결 기반 클래스 |
 | `EosPlayerGameplayAbility` | 플레이어 전용 GA. PlayerCharacter / Controller 참조 제공 |
 | `EosAbilitySystemComponent` | InputTag 기반 Ability 검색 및 활성화 |
 | `EosAttributeSet` | Health / Damage Attribute 정의 및 변경 처리 |
