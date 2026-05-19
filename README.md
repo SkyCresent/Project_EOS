@@ -192,7 +192,7 @@ Input
 | Class | 역할 |
 |---|---|
 | `EosGameplayAbility` | GA 공통 기반. EffectSpec 생성, GameplayEvent 처리 |
-| `EosBaseCharacter` | EosBaseCharacter | Character 공통 기능 및 ASC 연결 기반 클래스 |
+| `EosBaseCharacter` | EosBaseCharacter / Character 공통 기능 및 ASC 연결 기반 클래스 |
 | `EosPlayerGameplayAbility` | 플레이어 전용 GA. PlayerCharacter / Controller 참조 제공 |
 | `EosAbilitySystemComponent` | InputTag 기반 Ability 검색 및 활성화 |
 | `EosAttributeSet` | Health / Damage Attribute 정의 및 변경 처리 |
