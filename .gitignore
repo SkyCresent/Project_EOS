@@ -78,5 +78,9 @@
 # Allow gitignore itself
 !.gitignore
 
+# Allow README images/gifs
+!Images/
+!Images/**
+
 # Exclude Rest API folder
 Restapi/
